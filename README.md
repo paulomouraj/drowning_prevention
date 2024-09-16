@@ -31,7 +31,7 @@ The model CNN object detection with bounding boxes: [MobileNet-SSD v2](https://g
 
 ## Contributors
 
-Paulo Roberto de Moura Júnior (me)
+Paulo Roberto de Moura Júnior (me)  
 Kevin Mulinari Kuhn
 
 [High level description (only in portuguese)](https://github.com/paulomouraj/waterpi_drowning_prevention/blob/main/docs/waterpi_HLD.pdf)
