@@ -15,7 +15,7 @@ The detection pipeline is based on the following steps:
 
 ## Models
 
-The model CNN object detection with bounding boxes: [MobileNet-SSD v2](https://github.com/chuanqi305/MobileNet-SSD/tree/master)
+Pre-trained CNN for object detection: [MobileNet-SSD v2](https://github.com/chuanqi305/MobileNet-SSD/tree/master)
 
 ## Hardware Requirements
 
