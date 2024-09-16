@@ -5,7 +5,7 @@
 The goal of this work was to develop a software package for detecting pedestrians walking too close to the borders of home swimming pools that could fall off the border and drown without being noticed. The software runs in a Raspberry Pi 3 with a Pi Camera module and thus was designed to work with limited hardware. The final tests performed with children revealed a sucess ratio of 87% in 46 approximations to the pool in different ways.
 
 A detection example is shown below:
-![Detection close to the pool]()
+![Example of detection in the pool area]()
 
 The detection pipeline is based on the following steps:
 
