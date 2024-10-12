@@ -34,6 +34,12 @@ Install required Python packages
 pip install -r requirements.txt
 ```
 
+Run the main script on source folder
+```bash
+cd source
+python main.py
+```
+
 ## Contributors
 
 Paulo Roberto de Moura Júnior (me)  
