@@ -20,15 +20,15 @@ Pre-trained CNN for object detection: [MobileNet-SSD v2](https://github.com/chua
 ## Installation Instructions
 Hardware Requirements:  
 - Raspberry Pi 3
-- Raspberry Pi Camera Module v2.1
+- Raspberry Pi Camera Module v2.1  
 
-1) To avoid problems with versioning and ensure compatibility of dependencies, it is highly recommended to set up a [Conda environment](https://docs.anaconda.com/anaconda/install/linux/) for the WaterPi software:  
+To avoid problems with versioning and ensure compatibility of dependencies, it is highly recommended to set up a [Conda environment](https://docs.anaconda.com/anaconda/install/linux/) for the WaterPi software:  
 ```bash
 conda create --name waterpi python=3.8
 conda activate waterpi
 ```
 
-2) Install required Python packages
+Install required Python packages
 ```bash
 pip install -r requirements.txt
 ```
