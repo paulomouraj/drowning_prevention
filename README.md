@@ -18,7 +18,7 @@ The detection pipeline is based on the following steps:
 
 Pre-trained CNN for object detection: [MobileNet-SSD v2](https://github.com/chuanqi305/MobileNet-SSD/tree/master)
 
-## Installation Instructions
+## Setup
 Hardware Requirements:  
 - Raspberry Pi 3
 - Raspberry Pi Camera Module v2.1  
@@ -34,6 +34,7 @@ Install required Python packages
 pip install -r requirements.txt
 ```
 
+## Testing
 Run the main script on source folder
 ```bash
 cd source
