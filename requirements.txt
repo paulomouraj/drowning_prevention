@@ -1,0 +1,4 @@
+numpy==1.19.2  # For numerical operations and array handling
+opencv-python==4.1.1  # For image processing tasks
+picamera==1.13  # For accessing the Raspberry Pi camera
+RPi.GPIO==0.7.0  # For GPIO pin control on the Raspberry Pi

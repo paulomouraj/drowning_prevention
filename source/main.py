@@ -16,23 +16,41 @@ GPIO.setup(But1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 # Resets pool calibration flag
 flag_calibrate = 0
 
-# Callback function for button press
-
 
 def handle(pin):
+    """Callback function for button press, called whenever a given GPIO changes its state.
+    Called whenever the pool area needs to be calibrated.
+
+    Args:
+        pin (int): GPIO port of the pressed button
+    """
+
     if pin == But1:
         global flag_calibrate
         flag_calibrate = 1
         print("Calibrating...")
 
 
-# External interrupt for button press
+# Set external interrupt for button press
 GPIO.add_event_detect(But1, GPIO.FALLING, handle, bouncetime=300)
-
-# Function to detect the pool area
 
 
 def detectPool(image):
+    """ Pool edges detection based on the pool color (here defined as the blue range).
+
+    Args:
+        image (numpy.ndarray): BGR (uint8) image containg the entire pool 
+
+    Returns:
+        tuple: A tuple containing three elements:
+            - flag_contours (int):
+                A flag indicating whether any contours were detected (1 if a pool contour was found, 0 otherwise).
+            - edges (numpy.ndarray):
+                A blank image (same dimensions as the input) with the detected pool contour drawn in red.
+            - largest_contour (numpy.ndarray or int):
+                The largest contour found, corresponding to the pool area. If no contour is found, returns 0.
+    """
+
     # Resets the flag that indicates whether contours were detected or not
     flag_contours = 0
     # Creates a blank image of the same size as the original
@@ -73,10 +91,25 @@ def detectPool(image):
     # Returns the largest contour to be drawn on the image stream
     return flag_contours, edges, largest_contour
 
-# Function that checks if a person is close to the pool
-
 
 def verify(edges, xA, yA, xB, yB):
+    """ Check if a detected person is too close to the pool edges.
+    This function checks whether the pool's edge is present within a specified bounding box 
+    around a detected person.
+
+    Args:
+        edges (numpy.ndarray): A BGR image (uint8) containing the edges of the pool in red color (R channel = 255).
+        xA (int): The x-coordinate of the top-left corner of the bounding box.
+        yA (int): The y-coordinate of the top-left corner of the bounding box.
+        xB (int): The x-coordinate of the bottom-right corner of the bounding box.
+        yB (int): The y-coordinate of the bottom-right corner of the bounding box.
+
+    Returns:
+        bool: A flag indicating whether the pool edge was detected within the bounding box:
+            - 1: Pool edge detected within the bounding box, indicating proximity to the pool.
+            - 0: No pool edge detected, meaning the person is not near the pool edge.
+    """
+
     flag = 0
     if yB >= edges.shape[0]:
         yB = edges.shape[0] - 1
@@ -108,7 +141,9 @@ def verify(edges, xA, yA, xB, yB):
 
 # Import the MobileNet SSD model with the pre-trained weights
 net = cv2.dnn.readNetFromCaffe(
-    "MobileNetSSD_deploy.prototxt.txt", "MobileNetSSD_deploy.caffemodel")
+    "../models/MobileNetSSD_deploy.prototxt.txt",
+    "../models/MobileNetSSD_deploy.caffemodel"
+)
 
 # *****PI CAMERA CONFIG*****
 camera = PiCamera()
@@ -122,7 +157,7 @@ filter = cv2.createBackgroundSubtractorMOG2()
 # Resets pool detection flag
 flag_pool = 0
 
-# Setting MOG2 trheshold values
+# Setting MOG2 threshold values
 area_total = 160*120
 area_min = 0.1*area_total
 area_max = 0.3*area_total
